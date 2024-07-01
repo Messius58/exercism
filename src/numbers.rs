@@ -1,0 +1,10 @@
+mod prime;
+mod square;
+mod armstrong;
+mod collatz_conjecture;
+mod allyourbase;
+mod perfect;
+mod pascal_triangle;
+mod accumulation;
+mod euler;
+pub mod knapsack;
