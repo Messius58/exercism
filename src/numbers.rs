@@ -6,5 +6,5 @@ mod allyourbase;
 mod perfect;
 mod pascal_triangle;
 mod accumulation;
-mod euler;
+pub mod euler;
 pub mod knapsack;

@@ -1,22 +1,35 @@
-#[derive(Debug, PartialEq, Eq)]
+
+#[derive(Debug, PartialEq, Eq, Clone)]
 pub enum Error {
     SpanTooLong,
     InvalidDigit(char),
 }
 
 pub fn lsp(string_digits: &str, span: usize) -> Result<u64, Error> {
-    *(&[string_digits].windows(span)
-    .flat_map(|w| w.iter().flat_map(|c| str::parse::<u64>(*c).map(|n| {
-        let mut r = 0;
-        let mut d = n;
-        for i in 0..n.ilog10() {
-            r += d % 10;
-            d = d / 10;
-        }
-        Ok(d)
-    }))).max().unwrap())
+    if string_digits.len() < span {
+        return Err(Error::SpanTooLong);
+    }
+    let max = string_digits
+        .chars()
+        .collect::<Vec<char>>()
+        .windows(span)
+        .map(|sub|
+            sub.iter().try_fold(1u64, |acc, n| {
+                if let Some(i) = n.to_digit(10) {
+                    Ok(acc * i as u64)
+                } else {
+                    Err(Error::InvalidDigit(*n))
+                }
+            })
+        )
+        .collect::<Vec<Result<u64, Error>>>();
+    let mut iter = max.iter();
+    if iter.any(|f| f.is_err()) {
+        iter.next().unwrap().clone()
+    } else {
+        Ok(*max.iter().flat_map(|c| c).max().unwrap())
+    }
 }
-
 
 #[test]
 fn return_is_a_result() {
