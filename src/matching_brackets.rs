@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-pub fn brackets_are_balanced(string: &str) -> bool {
+fn brackets_are_balanced(string: &str) -> bool {
     let mut c_open = Vec::<char>::new();
     let corr_chars = HashMap::<char, char>::from([('[',']'), ('{','}'), ('(', ')')]);
     // for access performance
@@ -10,7 +10,7 @@ pub fn brackets_are_balanced(string: &str) -> bool {
     for c in string.chars() {
         if opening_chars.contains(&c) {
             c_open.push(c);
-        } 
+        }
         else if ending_chars.contains(&c) {
             if let Some(o) = c_open.pop() {
                 if corr_chars[&o] == c {

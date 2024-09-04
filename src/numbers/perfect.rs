@@ -1,12 +1,12 @@
 
 #[derive(Debug, PartialEq, Eq)]
-pub enum Classification {
+enum Classification {
     Abundant,
     Perfect,
     Deficient,
 }
 
-pub fn classify(num: u64) -> Option<Classification> {
+fn classify(num: u64) -> Option<Classification> {
     if num == 0 { return None; }
 
     match aliquot(num) {
@@ -20,7 +20,6 @@ fn aliquot(num: u64) -> u64 {
     let sum = (1..=num.div_euclid(2)).filter(|i| num % i == 0)
     .sum();
 
-    println!("{sum}");
     sum
 }
 

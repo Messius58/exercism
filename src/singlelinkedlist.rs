@@ -1,13 +1,13 @@
 use std::{cell::RefCell, rc::Rc};
 
 #[derive(Clone)]
-pub struct Node<T>
+struct Node<T>
 where T: Clone {
     item: T,
     next: Option<Rc<RefCell<Node<T>>>>
 }
 
-pub struct SimpleLinkedList<T>
+struct SimpleLinkedList<T>
 where T: Clone {
     peeked: Option<T>,
     current: Option<Rc<RefCell<Node<T>>>>,
@@ -26,7 +26,7 @@ where T: Clone {
 
 impl<T> SimpleLinkedList<T>
 where T: Clone {
-    pub fn new() -> Self {
+    fn new() -> Self {
         SimpleLinkedList {
             current: None,
             peeked: None,
@@ -34,15 +34,15 @@ where T: Clone {
         }
     }
 
-    pub fn is_empty(&self) -> bool {
+    fn is_empty(&self) -> bool {
         self.counter == 0
     }
 
-    pub fn len(&self) -> usize {
+    fn len(&self) -> usize {
         self.counter
     }
 
-    pub fn push(&mut self, _element: T) {
+    fn push(&mut self, _element: T) {
         let mut node = Node::new(_element);
         if self.current.is_some() {
             node.next = Some(Rc::clone(&self.current.as_ref().unwrap()));
@@ -51,7 +51,7 @@ where T: Clone {
         self.counter += 1;
     }
 
-    pub fn pop(&mut self) -> Option<T> {
+    fn pop(&mut self) -> Option<T> {
         if self.current.is_some() {
             let cur = self.current.as_ref().unwrap();
             let node = Some(cur.as_ref().borrow().to_owned().item);
@@ -69,7 +69,7 @@ where T: Clone {
         None
     }
 
-    pub fn peek(&mut self) -> Option<&T> {
+    fn peek(&mut self) -> Option<&T> {
         if self.current.is_some() {
             self.peeked = Some(self.current.as_ref().unwrap().borrow().item.clone());
             self.peeked.as_ref()
@@ -79,7 +79,7 @@ where T: Clone {
     }
 
     #[must_use]
-    pub fn rev(self) -> SimpleLinkedList<T> {
+    fn rev(self) -> SimpleLinkedList<T> {
         let mut revll = SimpleLinkedList::new();
         let mut current = self.current;
         while current.is_some() {

@@ -1,4 +1,4 @@
-pub fn reply(message: &str) -> &str {
+fn reply(message: &str) -> &str {
     // escape
     let msg = message.trim();
     // treat empty string

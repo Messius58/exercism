@@ -6,12 +6,12 @@
 
 use std::{collections::HashMap, str::Chars};
 
-pub fn plants(diagram: &str, student: &str) -> Vec<&'static str> {
+fn plants(diagram: &str, student: &str) -> Vec<&'static str> {
     let children = ["Alice", "Bob", "Charlie", "David", "Eve", "Fred", "Ginny", "Harriet", "Ileana", "Joseph", "Kincaid", "Larry"];
     let plants = HashMap::from([('V', "violets"), ('C', "clover"), ('R', "radishes"), ('G', "grass")]);
     let lines: Vec<Chars<'_>> = diagram.split('\n').map(|s| s.trim().chars()).collect();
     let child_idx = children.iter().position(|&e| e == student).unwrap_or_default() * 2;
-    
+
     let mut child_plants = Vec::<&str>::new();
 
     for mut line in lines {

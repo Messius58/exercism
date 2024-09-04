@@ -1,16 +1,16 @@
 
-pub struct PascalsTriangle {
+struct PascalsTriangle {
     row_count: u32
 }
 
 impl PascalsTriangle {
-    pub fn new(row_count: u32) -> Self {
+    fn new(row_count: u32) -> Self {
         Self {
             row_count
         }
     }
 // essayer de revoir l' insertion avec map et fold
-    pub fn rows(&self) -> Vec<Vec<u32>> {
+    fn rows(&self) -> Vec<Vec<u32>> {
         let mut rows = Vec::<Vec<u32>>::new();
         match self.row_count {
             0 => rows,

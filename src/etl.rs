@@ -1,6 +1,6 @@
 use std::collections::BTreeMap;
 
-pub fn transform(h: &BTreeMap<i32, Vec<char>>) -> BTreeMap<char, i32> {
+fn transform(h: &BTreeMap<i32, Vec<char>>) -> BTreeMap<char, i32> {
     let mut new_map = BTreeMap::<char, i32>::new();
 
     /** Solution trouvé dans la communauté mais ne gère que les caractères ASCII alors que le

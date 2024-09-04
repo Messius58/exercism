@@ -1,9 +1,9 @@
 
  // https://en.wikipedia.org/wiki/Knapsack_problem#Solving
 #[derive(Debug)]
-pub struct Item {
-    pub weight: u32,
-    pub value: u32,
+struct Item {
+    weight: u32,
+    value: u32,
 }
 
 fn compute(items: &[Item], memoisation: &mut Vec<Vec<i32>>, curr_weight: usize, curr_item_idx: usize) {
@@ -33,7 +33,7 @@ fn compute(items: &[Item], memoisation: &mut Vec<Vec<i32>>, curr_weight: usize, 
 
 // Possibilité d'utiliser le pgcd présent dans affine.rs pour réduire le nombre et l'incrément du poids.
 // L'idéal serait d'utiliser un équivalent de HashMap pour indexer les poids/items mais celui de Rust est 10 * plus lent !!! mais économise pas mal de mémoire sur les itérations proche du résultat
-pub fn maximum_value(max_weight: u32, items: &[Item]) -> u32 {
+fn maximum_value(max_weight: u32, items: &[Item]) -> u32 {
     if max_weight == 0 || items.len() == 0 {
         return 0;
     }

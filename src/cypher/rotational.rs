@@ -1,7 +1,7 @@
 
 use crate::cypher::PLAIN;
 
-pub fn rotate(input: &str, key: u8) -> String {
+fn rotate(input: &str, key: u8) -> String {
     let (str1, str2) = PLAIN.split_at(key as usize % PLAIN.len());
     let rot_alpha = Vec::from_iter((str2.to_owned() + str1).chars());
     let crypted = input.chars().map(|c| {

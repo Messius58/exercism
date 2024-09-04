@@ -1,7 +1,7 @@
 use std::collections::HashMap;
 use crate::alphametics::backtracking::solver::solve;
 
-pub mod backtracking;
+mod backtracking;
 
 /* TEST */
 fn assert_alphametic_solution_eq(puzzle: &str, solution: &[(char, u8)]) {

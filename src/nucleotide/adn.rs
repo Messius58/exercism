@@ -2,7 +2,7 @@ use std::collections::HashMap;
 
 const DNA_NUCLEIDE_BASE: [char; 4] = ['A', 'C', 'G', 'T'];
 
-pub fn count(nucleotide: char, dna: &str) -> Result<usize, char> {
+fn count(nucleotide: char, dna: &str) -> Result<usize, char> {
     if !DNA_NUCLEIDE_BASE.contains(&nucleotide) {
         return Err(nucleotide);
     }
@@ -18,7 +18,7 @@ pub fn count(nucleotide: char, dna: &str) -> Result<usize, char> {
 }
 
 // Ordre ADN : A(denine), C(ytosine), G(uanine), T(hymine)
-pub fn nucleotide_counts(dna: &str) -> Result<HashMap<char, usize>, char> {
+fn nucleotide_counts(dna: &str) -> Result<HashMap<char, usize>, char> {
     let mut nucleos = HashMap::<char, usize>::new();
     for nucleotide in DNA_NUCLEIDE_BASE {
         nucleos.insert(nucleotide, count(nucleotide, dna)?);

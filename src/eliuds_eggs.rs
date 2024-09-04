@@ -1,6 +1,6 @@
 // https://www.techiedelight.com/fr/brian-kernighans-algorithm-count-set-bits-integer/
 // existe aussi une méthode dans Rust => display_value.count_ones();
-pub fn egg_count(display_value: u32) -> usize {
+fn egg_count(display_value: u32) -> usize {
     let mut n = display_value;
     if display_value != 0 {
         for i in 1.. {

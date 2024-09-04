@@ -1,4 +1,4 @@
-pub fn build_proverb(list: &[&str]) -> String {
+fn build_proverb(list: &[&str]) -> String {
     let mut proverb = Vec::new();
     if list.len() == 0 { return String::new(); }
     if list.len() > 1 {

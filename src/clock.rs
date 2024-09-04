@@ -1,7 +1,7 @@
 use std::fmt::Display;
 
 #[derive(Debug, PartialEq)]
-pub struct Clock {
+struct Clock {
     hour: u8,
     minutes: u8,
 }
@@ -16,7 +16,7 @@ impl Clock {
     const HOUR_DURATION: u32 = 24;
     const MINUTES_DURATION: u32 = 60;
 
-    pub fn new(hours: i32, minutes: i32) -> Self {
+    fn new(hours: i32, minutes: i32) -> Self {
         let mut clock = Clock {
             hour: 0,
             minutes: 0,
@@ -25,7 +25,7 @@ impl Clock {
         clock
     }
 
-    pub fn add_minutes(&self, minutes: i32) -> Self {
+    fn add_minutes(&self, minutes: i32) -> Self {
         let mut clock = Clock {
             hour: 0,
             minutes: 0,

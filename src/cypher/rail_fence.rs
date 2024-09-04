@@ -47,12 +47,12 @@ fn cypher_zig() {
 }
 
 // https://en.wikipedia.org/wiki/Rail_fence_cipher
-pub struct RailFence {
+struct RailFence {
     count: u32
 }
 
 impl RailFence {
-    pub fn new(rails: u32) -> Self {
+    fn new(rails: u32) -> Self {
         Self {
             count: rails
         }
@@ -84,7 +84,7 @@ impl RailFence {
         steps
     }
 
-    pub fn encode(&self, text: &str) -> String {
+    fn encode(&self, text: &str) -> String {
         let steps = self.steps();
         steps.iter().zip(steps.iter().rev()).enumerate().map(|(idx, (zig, zag))| {
             let mut iter = text.chars().skip(idx);
@@ -103,7 +103,7 @@ impl RailFence {
         }).collect::<String>()
     }
 
-    pub fn decode(&self, cipher: &str) -> String {
+    fn decode(&self, cipher: &str) -> String {
         let rails = self.rails(cipher);
         let steps = self.steps();
         let mut string: Vec<char> = Vec::new();

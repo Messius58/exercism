@@ -4,7 +4,7 @@ fn modular_exponentiation(base: &u64, exponent: &u64, modulus: &u64) -> u64 {
     let modulus: u128 = *modulus as u128;
     assert!((modulus - 1).checked_pow(2) != None);
 
-    let mut base: u128 = *base as u128 % modulus;    
+    let mut base: u128 = *base as u128 % modulus;
     let mut exponent = *exponent;
     let mut result: u128 = 1;
 
@@ -31,7 +31,7 @@ fn random_at_most(max: u64) -> u64 {
     let bin_size = u64::MAX / num_bins;
     let defect   = u64::MAX % num_bins;
     let mut x: u64 = 0;
-    loop {        
+    loop {
         x = random();
         if u64::MAX - defect > x {
             x /= bin_size;
@@ -39,19 +39,19 @@ fn random_at_most(max: u64) -> u64 {
                 break;
             }
         }
-    }    
+    }
     x
 }
 
-pub fn private_key(p: u64) -> u64 {
+fn private_key(p: u64) -> u64 {
     random_at_most(p)
 }
 
-pub fn public_key(p: u64, g: u64, a: u64) -> u64 {
+fn public_key(p: u64, g: u64, a: u64) -> u64 {
     modular_exponentiation(&g, &a, &p)
 }
 
-pub fn secret(p: u64, b_pub: u64, a: u64) -> u64 {
+fn secret(p: u64, b_pub: u64, a: u64) -> u64 {
     modular_exponentiation(&b_pub, &a, &p)
 }
 

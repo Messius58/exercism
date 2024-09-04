@@ -1,6 +1,6 @@
 
 #[derive(Debug, PartialEq, Eq)]
-pub enum Comparison {
+enum Comparison {
     Equal,
     Sublist,
     Superlist,
@@ -11,7 +11,7 @@ pub enum Comparison {
 - Utilise windows pour définir une rangée du nbre d'éléments le plus petit
 - Ensuite any est chargé de trouver cette rangée dans le tableau
 */
-pub fn sublist<T: PartialEq>(_first_list: &[T], _second_list: &[T]) -> Comparison {
+fn sublist<T: PartialEq>(_first_list: &[T], _second_list: &[T]) -> Comparison {
     use Comparison::*;
 
     match (_first_list.len(), _second_list.len()) {

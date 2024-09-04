@@ -3,14 +3,14 @@ use std::collections::HashMap;
 See exercise arn transcription
 */
 #[derive(Debug, PartialEq, Eq)]
-pub struct Rna {
+struct Rna {
     strand: Vec<char>,
 }
 
 impl Rna {
     const RNA_NUCLEIDE_BASE: [char; 4] = ['A', 'C', 'G', 'U'];
 
-    pub fn new(rna: &str) -> Result<Rna, usize> {
+    fn new(rna: &str) -> Result<Rna, usize> {
         let strand = Vec::from_iter(rna.chars());
         error_detection(&Rna::RNA_NUCLEIDE_BASE, &strand)?;
         Ok(Rna { strand })
@@ -25,14 +25,14 @@ fn error_detection(nucleide_base: &[char; 4], dna: &Vec<char>) -> Result<(), usi
     Ok(())
 }
 
-pub struct CodonsInfo<'a> {
+struct CodonsInfo<'a> {
     proteins: HashMap<&'a str, &'a str>,
 }
 
 impl<'a> CodonsInfo<'a> {
     const RNA_NUCLEIDE_BASE: [char; 4] = ['A', 'C', 'G', 'U'];
 
-    pub fn name_for(&self, codon: &str) -> Option<&'a str> {
+    fn name_for(&self, codon: &str) -> Option<&'a str> {
         if let Some(v) = self.proteins.get(codon) {
             Some(*v)
         } else {
@@ -40,7 +40,7 @@ impl<'a> CodonsInfo<'a> {
         }
     }
 
-    pub fn of_rna(&self, rna: &str) -> Option<Vec<&'a str>> {
+    fn of_rna(&self, rna: &str) -> Option<Vec<&'a str>> {
         let arn = match Rna::new(rna) {
             Err(_) => return None,
             Ok(x) => x,
@@ -63,7 +63,7 @@ impl<'a> CodonsInfo<'a> {
     }
 }
 
-pub fn parse<'a>(pairs: Vec<(&'a str, &'a str)>) -> CodonsInfo<'a> {
+fn parse<'a>(pairs: Vec<(&'a str, &'a str)>) -> CodonsInfo<'a> {
     CodonsInfo {
         proteins: HashMap::from_iter(pairs),
     }

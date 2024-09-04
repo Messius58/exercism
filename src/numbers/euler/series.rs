@@ -1,11 +1,11 @@
 
-/** Autre solution qui utilise windows (peut être intéressant à connaître) pour gérer la longueur MAIS 
- * en passant par 1 vecteur intermédiaire et 2 collect 
- * 
+/** Autre solution qui utilise windows (peut être intéressant à connaître) pour gérer la longueur MAIS
+ * en passant par 1 vecteur intermédiaire et 2 collect
+ *
  * Sur un petit benchmark de 100_000 itérations, il y a 30% de mauvaise performance.
  * */
 
-// pub fn series(digits: &str, len: usize) -> Vec<String> {
+// fn series(digits: &str, len: usize) -> Vec<String> {
 //     if len == 0 {
 //         return vec!["".to_string(); digits.len() + 1];
 //     }
@@ -17,7 +17,7 @@
 //         .collect()
 // }
 
-pub fn series(digits: &str, len: usize) -> Vec<String> {
+fn series(digits: &str, len: usize) -> Vec<String> {
     let mut suites = Vec::<String>::new();
     if len > 0 && len <= digits.len() {
         (len..=digits.len()).fold(0, |acc, i| {

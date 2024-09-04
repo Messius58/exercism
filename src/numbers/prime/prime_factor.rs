@@ -1,4 +1,4 @@
-pub fn factors(n: u64) -> Vec<u64> {
+fn factors(n: u64) -> Vec<u64> {
     let primes: Vec<u64> = vec![2, 3, 5, 7, 11, 13, 17, 23, 461, 9539, 894119];
     let mut fact = Vec::<u64>::new();
     let mut n2 = n;
@@ -6,7 +6,7 @@ pub fn factors(n: u64) -> Vec<u64> {
     if n < 2 {
         return vec![];
     }
-    
+
     for prime in primes {
         while n2 > 0 && n2 >= prime && n2 % prime == 0 {
             fact.push(prime);

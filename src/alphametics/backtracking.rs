@@ -57,7 +57,7 @@ struct Consigne {
 }
 
 impl Expression {
-    pub fn new() -> Self {
+    fn new() -> Self {
         Expression {
             termes: Vec::new(),
             somme: ' ',
@@ -98,7 +98,7 @@ impl Expression {
 }
 
 impl Liste {
-    pub fn new(prem_noeud: &Rc<RefCell<Expression>>) -> Self {
+    fn new(prem_noeud: &Rc<RefCell<Expression>>) -> Self {
         Liste {
             tete: Rc::clone(prem_noeud),
             queue: Rc::clone(prem_noeud)
@@ -107,7 +107,7 @@ impl Liste {
 }
 
 impl Donnees {
-    pub fn new() -> Self {
+    fn new() -> Self {
         Donnees {
             retenu_a_fournir: 0,
             doit_fournir: false,
@@ -117,7 +117,7 @@ impl Donnees {
 }
 
 impl Contexte {
-    pub fn new(input: &str, action: Action) -> Self {
+    fn new(input: &str, action: Action) -> Self {
         let mut hash_alpha = input.chars().filter(|c| c.is_ascii_alphabetic()).collect::<Vec<char>>();
         hash_alpha.sort();
         hash_alpha.dedup();
@@ -180,14 +180,14 @@ impl Contexte {
 }
 
 impl Consigne {
-    pub fn new() -> Self {
+    fn new() -> Self {
         Consigne {
             valeur: 0,
             force: false
         }
     }
 
-    pub fn with_value<'a>(&'a mut self, valeur: u8) -> &'a Self {
+    fn with_value<'a>(&'a mut self, valeur: u8) -> &'a Self {
         self.valeur = valeur;
         self
     }

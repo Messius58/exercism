@@ -1,11 +1,11 @@
 
 #[derive(Debug, PartialEq, Eq, Clone)]
-pub enum Error {
+enum Error {
     SpanTooLong,
     InvalidDigit(char),
 }
 
-pub fn lsp(string_digits: &str, span: usize) -> Result<u64, Error> {
+fn lsp(string_digits: &str, span: usize) -> Result<u64, Error> {
     if string_digits.len() < span {
         return Err(Error::SpanTooLong);
     }

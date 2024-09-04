@@ -1,7 +1,7 @@
 pub mod edge {
     use std::collections::HashMap;
     use crate::dot_dsl::graph::{add_attrs, get_attr};
-    
+
     #[derive(PartialEq, Debug, Clone)]
     pub struct Edge {
         node1: String,
@@ -22,7 +22,7 @@ pub mod edge {
             add_attrs(&mut self.attrs, attrs);
             self
         }
-    
+
         pub fn attr(&self, name: &str) -> Option<&str> {
             get_attr(&self.attrs, name)
         }
@@ -35,7 +35,7 @@ pub mod node {
 
     #[derive(Eq, PartialEq, Debug, Clone)]
     pub struct Node {
-        pub name: String,
+        name: String,
         attrs: HashMap<String, String>
     }
 
@@ -51,9 +51,11 @@ pub mod node {
             add_attrs(&mut self.attrs, attrs);
             self
         }
-    
+
         pub fn attr(&self, name: &str) -> Option<&str> {
             get_attr(&self.attrs, name)
-        }   
+        }
+
+        pub fn name(&self) -> String { self.name.clone() }
     }
 }

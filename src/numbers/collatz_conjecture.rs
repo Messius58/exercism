@@ -1,4 +1,4 @@
-pub fn collatz(mut n: u64) -> Option<u64> {
+fn collatz(mut n: u64) -> Option<u64> {
     for i in 0.. {
         match n {
             0 => break,

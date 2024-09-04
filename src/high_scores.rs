@@ -1,26 +1,26 @@
 #[derive(Debug)]
-pub struct HighScores<'a> {
+struct HighScores<'a> {
     scores: &'a [u32]
 }
 
 impl<'a> HighScores<'a> {
-    pub fn new(scores: &'a [u32]) -> Self {
+    fn new(scores: &'a [u32]) -> Self {
         HighScores { scores }
     }
 
-    pub fn scores(&self) -> &[u32] {
+    fn scores(&self) -> &[u32] {
         self.scores
     }
 
-    pub fn latest(&self) -> Option<u32> {
+    fn latest(&self) -> Option<u32> {
         self.scores.last().copied()
     }
 
-    pub fn personal_best(&self) -> Option<u32> {
+    fn personal_best(&self) -> Option<u32> {
         self.scores.iter().max().copied()
     }
 
-    pub fn personal_top_three(&self) -> Vec<u32> {
+    fn personal_top_three(&self) -> Vec<u32> {
         let mut highest = self.scores.to_vec();
         let end = if highest.len() > 3 { 3 } else { highest.len() };
         highest.sort_by(|a, b| b.cmp(a));

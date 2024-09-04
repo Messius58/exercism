@@ -1,7 +1,7 @@
 use crate::cypher::PLAIN;
 
 #[derive(Debug, Eq, PartialEq)]
-pub enum AffineCipherError {
+enum AffineCipherError {
     NotCoprime(i32),
 }
 
@@ -12,7 +12,7 @@ pub enum AffineCipherError {
 // m is the length of the alphabet. For the Roman alphabet m is 26.
 // a and b are integers which make the encryption key
 // a and m are coprime or error
-pub fn encode(plaintext: &str, a: u32, b: u32) -> Result<String, AffineCipherError> {
+fn encode(plaintext: &str, a: u32, b: u32) -> Result<String, AffineCipherError> {
     let _ = modinv(a as i32, PLAIN.len() as i32)?;
     let x = plaintext.chars()
                     .filter(|c| c.is_ascii_alphanumeric())
@@ -41,7 +41,7 @@ pub fn encode(plaintext: &str, a: u32, b: u32) -> Result<String, AffineCipherErr
 // it is important to note that a^-1 is the modular multiplicative inverse (MMI) of a mod m
 // the modular multiplicative inverse only exists if a and m are coprime.
 // if index calculated from the letter encrypted is negative then add m
-pub fn decode(ciphertext: &str, a: i32, b: i32) -> Result<String, AffineCipherError> {
+fn decode(ciphertext: &str, a: i32, b: i32) -> Result<String, AffineCipherError> {
     let a_prime = modinv(a, PLAIN.len() as i32)?;
     let y = ciphertext.chars()
                     .filter(|c| c.is_ascii_alphanumeric())

@@ -1,5 +1,5 @@
-pub mod graph;
-pub mod graph_items;
+mod graph;
+mod graph_items;
 
 use maplit::hashmap;
 use self::{graph::Graph, graph_items::{edge::Edge, node::Node}};

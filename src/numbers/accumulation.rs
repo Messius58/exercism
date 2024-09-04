@@ -1,6 +1,6 @@
 // mut doit être précisé dans le paramètre pour préciser que l'on souhaite la
 // version FnMut car ce supertrait, implémente aussi Fn qui lui-même implémente FnOnce
-pub fn map<E, S, F>(input: Vec<E>, mut _function: F) -> Vec<S>
+fn map<E, S, F>(input: Vec<E>, mut _function: F) -> Vec<S>
 where F: FnMut(E) -> S  {
     let mut output = Vec::<S>::new();
     for i in input {

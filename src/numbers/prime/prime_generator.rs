@@ -20,7 +20,7 @@ fn primes_generated(start: u32, end: u32) -> Vec<u32> {
     v
 }
 
-pub fn nth(n: u32) -> u32 {
+fn nth(n: u32) -> u32 {
     let rslt = primes_generated(2, 105_000);
     rslt[n as usize]
 }

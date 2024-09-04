@@ -1,7 +1,7 @@
 
-pub fn sum_of_multiples(limit: u32, factors: &[u32]) -> u32 {
+fn sum_of_multiples(limit: u32, factors: &[u32]) -> u32 {
     let mut total = Vec::with_capacity(limit as usize);
-    for f in factors {        
+    for f in factors {
         let end = match *f {
             0 => 0,
             _ if (limit % *f) == 0 => limit / *f - 1,

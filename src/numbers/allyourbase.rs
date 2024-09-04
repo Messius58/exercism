@@ -1,22 +1,22 @@
 
 #[derive(Debug, PartialEq, Eq)]
-pub enum Error {
+enum Error {
     InvalidInputBase,
     InvalidOutputBase,
     InvalidDigit(u32),
 }
 
-pub fn convert(number: &[u32], from_base: u32, to_base: u32) -> Result<Vec<u32>, Error> {
+fn convert(number: &[u32], from_base: u32, to_base: u32) -> Result<Vec<u32>, Error> {
     if from_base < 2 { return Err(Error::InvalidInputBase); }
     if to_base < 2 { return Err(Error::InvalidOutputBase); }
     if number.is_empty() { return Ok(vec![0]); }
 
     let mut n = number.iter()
-                        .try_rfold((0, 0), |(sum, position), num| 
+                        .try_rfold((0, 0), |(sum, position), num|
                             if *num >= from_base { Err(Error::InvalidDigit(*num)) }
                             else { Ok((sum + *num * from_base.pow(position), position + 1)) })
                         ?.0;
-    
+
     let mut output = Vec::<u32>::new();
     while n >= to_base {
         output.push(n.rem_euclid(to_base));
@@ -24,8 +24,8 @@ pub fn convert(number: &[u32], from_base: u32, to_base: u32) -> Result<Vec<u32>,
     }
     output.push(n);
     output.reverse();
-    
-    Ok(output)    
+
+    Ok(output)
 }
 
 #[test]

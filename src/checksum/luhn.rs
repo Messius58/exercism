@@ -1,12 +1,12 @@
 // Check a Luhn checksum.
- 
+
 use std::fmt::Display;
 
-pub struct Luhn {
+struct Luhn {
     input: String
 }
 
-pub trait LuhnCheck {
+trait LuhnCheck {
     fn valid_luhn(&self) -> bool;
 }
 
@@ -25,7 +25,7 @@ impl Luhn {
     - Si non digit alors None, géré par try_fold, et passe dans map_or => false
     - Chaque map est une étape du calcul du luhn, réalisé dans un accumulateur de type tuple (fold)
     */
-    pub fn is_valid(&self) -> bool {
+    fn is_valid(&self) -> bool {
         self.input.chars()
             .rev()
             .filter(|c| !c.is_whitespace())

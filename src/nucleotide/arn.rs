@@ -5,14 +5,14 @@
 use std::collections::HashMap;
 
 #[derive(Debug, PartialEq, Eq)]
-pub struct Dna {
+struct Dna {
     strand: Vec<char>
 }
 
 impl Dna {
-    const DNA_NUCLEIDE_BASE: [char; 4] = ['A', 'C', 'G', 'T'];    
+    const DNA_NUCLEIDE_BASE: [char; 4] = ['A', 'C', 'G', 'T'];
 
-    pub fn new(dna: &str) -> Result<Dna, usize> {
+    fn new(dna: &str) -> Result<Dna, usize> {
         let strand = Vec::from_iter(dna.chars());
         error_detection(&Dna::DNA_NUCLEIDE_BASE, &strand)?;
         Ok(Dna {
@@ -20,7 +20,7 @@ impl Dna {
         })
     }
 
-    pub fn into_rna(self) -> Rna {
+    fn into_rna(self) -> Rna {
         let base_pairing: HashMap<&char, &char> = HashMap::from_iter(Dna::DNA_NUCLEIDE_BASE.iter().zip(Rna::RNA_NUCLEIDE_BASE.iter().rev()));
         let strand = self.strand.iter().map(|base| *base_pairing[base]).collect::<Vec<char>>();
         Rna { strand }
@@ -28,14 +28,14 @@ impl Dna {
 }
 
 #[derive(Debug, PartialEq, Eq)]
-pub struct Rna {
+struct Rna {
     strand: Vec<char>
 }
 
 impl Rna {
     const RNA_NUCLEIDE_BASE: [char; 4] = ['A', 'C', 'G', 'U'];
 
-    pub fn new(rna: &str) -> Result<Rna, usize> {
+    fn new(rna: &str) -> Result<Rna, usize> {
         let strand = Vec::from_iter(rna.chars());
         error_detection(&Rna::RNA_NUCLEIDE_BASE, &strand)?;
         Ok(Rna {

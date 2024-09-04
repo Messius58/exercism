@@ -47,6 +47,6 @@ impl Graph {
     }
 
     pub fn node(&self, name: &str) -> Option<&Node> {
-        self.nodes.iter().find(|node| node.name == name)
+        self.nodes.iter().find(|node| node.name() == name)
     }
 }

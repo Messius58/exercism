@@ -4,7 +4,7 @@ use crate::cypher::PLAIN;
 const CIPHER: &str = "zyxwvutsrqponmlkjihgfedcba";
 
 /// "Encipher" with the Atbash cipher.
-pub fn encode(plain: &str) -> String {
+fn encode(plain: &str) -> String {
     let base_pairing: HashMap<char, char> = HashMap::from_iter(PLAIN.chars().zip(CIPHER.chars()));
     plain.chars()
     .filter(|c| c.is_ascii_alphanumeric())
@@ -17,7 +17,7 @@ pub fn encode(plain: &str) -> String {
 }
 
 /// "Decipher" with the Atbash cipher.
-pub fn decode(cipher: &str) -> String {
+fn decode(cipher: &str) -> String {
     let base_pairing: HashMap<char, char> = HashMap::from_iter(CIPHER.chars().zip(PLAIN.chars()));
     cipher.chars()
     .filter(|c| c.is_ascii_alphanumeric())

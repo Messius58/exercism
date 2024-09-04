@@ -1,7 +1,7 @@
 
 /// Return the Hamming distance between the strings,
 /// or None if the lengths are mismatched.
-pub fn hamming_distance(s1: &str, s2: &str) -> Option<usize> {
+fn hamming_distance(s1: &str, s2: &str) -> Option<usize> {
     if s1.len() != s2.len() || s1.len() > 1000 || s2.len() > 1000 { None }
     else {
         let tot = s1.chars().zip(s2.chars()).filter(|(a, b)| a.ne(b)).count();
